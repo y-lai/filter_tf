@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="child_frame"           default="/ar_marker_13"/>
+  <arg name="parent_frame"          default="/camera_link"/>
+  <arg name="new_parent_frame"      default="/camera_link"/>
+  <arg name="new_child_frame"       default="/marker"/>
+  <arg name="tf_publish_rate"       default="20.0"/>
+  <arg name="node_name"             default="filter_tf"/>
+  <arg name="vector_threshold"      default="0.0005"/>
+  <arg name="quaternion_threshold"  default="0.0005"/>
+  <arg name="alpha"		    default="0.99"/>
+  <arg name="quat_change"   default="false"/>
+
+
+
+  <node pkg="filter_tf" type="filter_tf"  name="$(arg node_name)" respawn="true" args="1">
+    <param name="parent_frame"          type="str"        value="$(arg parent_frame)"/>
+    <param name="child_frame"           type="str"        value="$(arg child_frame)"/>
+    <param name="new_parent_frame"      type="str"        value="$(arg new_parent_frame)"/>
+    <param name="new_child_frame"       type="str"        value="$(arg new_child_frame)"/>
+    <param name="tf_publish_rate"       type="double"     value="$(arg tf_publish_rate)"/>
+    <param name="vector_threshold"      type="double"     value="$(arg vector_threshold)"/>
+    <param name="quaternion_threshold"  type="double"     value="$(arg quaternion_threshold)"/>
+    <param name="alpha"			type="double"	  value="$(arg alpha)"/>
+    <param name="quat_change"   type="bool"       value="$(arg quat_change)"/>
+  </node>
+
+
+</launch>
